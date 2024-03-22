@@ -48,6 +48,8 @@ class AddClientActivity : AppCompatActivity() {
 
             Toast.makeText(this, R.string.add_client_message, Toast.LENGTH_LONG).show()
             Toast.makeText(this, "tst 2", Toast.LENGTH_LONG).show()
+
+            finish()
         }
 
     }
