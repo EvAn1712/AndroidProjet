@@ -2,5 +2,12 @@
     <string name="app_name">GestionClient2023MIN2</string>
     <string name="client_last_name">Nom</string>
     <string name="add_button_label">Ajouter</string>
+    <string name="client_gender">Sexe</string>
+    <string name="man">Homme</string>
+    <string name="woman">Femme</string>
+    <string name="age">Age</string>
+    <string name="level">Niveau</string>
+    <string name="advanced">Avancé</string>
+    <string name="add_client_message">Client ajouté</string>
 
 </resources>
