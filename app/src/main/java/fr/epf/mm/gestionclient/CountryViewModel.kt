@@ -11,7 +11,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
-
 class CountryViewModel : ViewModel() {
     private val _countries = MutableLiveData<List<Country>>()
     val countries: LiveData<List<Country>> = _countries
@@ -43,7 +42,7 @@ class CountryViewModel : ViewModel() {
         countryService = retrofit.create(CountryService::class.java)
     }
 
-    suspend fun tryToFetchCountry(searchName: String): List<Country> {
+    suspend fun tryToFetchCountry(): List<Country> {
         val maxRetries = 5
         var currentRetry = 0
         var success = false
@@ -66,10 +65,10 @@ class CountryViewModel : ViewModel() {
     fun fetchCountries() {
         viewModelScope.launch {
             try {
-                val response = tryToFetchCountry("all") // replace "all" with your search name
+                val response = tryToFetchCountry()
                 _countries.value = response
             } catch (e: Exception) {
-                // Handle errors here
+                // Gérer les erreurs ici
             }
         }
     }
