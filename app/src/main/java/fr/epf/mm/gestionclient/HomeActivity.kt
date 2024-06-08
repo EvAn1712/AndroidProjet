@@ -13,13 +13,13 @@ class HomeActivity : AppCompatActivity() {
         val addButton = findViewById<Button>(R.id.home_add_button)
         val listButton = findViewById<Button>(R.id.home_list_button)
 
-        addButton.click {
-            val intent = Intent(this, AddClientActivity::class.java)
+        addButton.setOnClickListener {
+            val intent = Intent(this, AddCountryActivity::class.java)
             startActivity(intent)
         }
 
-        listButton.click {
-            val intent = Intent(this, ListClientActivity::class.java)
+        listButton.setOnClickListener {
+            val intent = Intent(this, CountryListActivity::class.java)
             startActivity(intent)
         }
     }

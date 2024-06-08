@@ -12,45 +12,43 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 
-class AddClientActivity : AppCompatActivity() {
+class AddCountryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_client)
+        setContentView(R.layout.activity_add_country)
 
-        val lastNameEditext = findViewById<EditText>(R.id.add_client_last_name_edittext)
-        val addButton = findViewById<Button>(R.id.add_client_button)
+        val countryNameEditText = findViewById<EditText>(R.id.add_country_name_edittext)
+        val addButton = findViewById<Button>(R.id.add_country_button)
 
-        val genderRadioGroup = findViewById<RadioGroup>(R.id.add_client_gender_radiogroup)
-        genderRadioGroup.check(R.id.add_client_gender_woman_radiobutton)
+        val continentRadioGroup = findViewById<RadioGroup>(R.id.add_country_continent_radiogroup)
+        continentRadioGroup.check(R.id.add_country_continent_asia_radiobutton)
 
-        val ageSeekBar = findViewById<SeekBar>(R.id.add_client_age_seekbar)
-        val ageTextview = findViewById<TextView>(R.id.add_client_age_textview)
-        val levelSpinner = findViewById<Spinner>(R.id.add_client_level_spinner)
+        val populationSeekBar = findViewById<SeekBar>(R.id.add_country_population_seekbar)
+        val populationTextView = findViewById<TextView>(R.id.add_country_population_textview)
+        val governmentTypeSpinner = findViewById<Spinner>(R.id.add_country_government_type_spinner)
 
-        ageSeekBar.setOnSeekBarChangeListener( object : OnSeekBarChangeListener {
-            override fun onProgressChanged(seekbar: SeekBar?, progress: Int, p2: Boolean) {
-               ageTextview.text = progress.toString()
+        populationSeekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, p2: Boolean) {
+                populationTextView.text = progress.toString()
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) = Unit
             override fun onStopTrackingTouch(p0: SeekBar?) = Unit
-
         })
 
+        addButton.setOnClickListener {
+            Log.d("EPF", "Nom du pays : ${countryNameEditText.text}")
+            val continent = when (continentRadioGroup.checkedRadioButtonId) {
+                R.id.add_country_continent_asia_radiobutton -> "Asie"
+                R.id.add_country_continent_europe_radiobutton -> "Europe"
+                else -> "Autre"
+            }
+            Log.d("EPF", "Continent : $continent")
+            Log.d("EPF", "Type de gouvernement : ${governmentTypeSpinner.selectedItem}")
 
-
-        addButton.setOnClickListener{
-            Log.d("EPF", "Nom : ${lastNameEditext.text}")
-            val gender =
-                if(genderRadioGroup.checkedRadioButtonId == R.id.add_client_gender_man_radiobutton) "Homme" else "Femme"
-                Log.d("EPF", "Genre: ${gender}")
-            Log.d("TAG", "Niveau : ${levelSpinner.selectedItem}")
-
-            Toast.makeText(this, R.string.add_client_message, Toast.LENGTH_LONG).show()
-            Toast.makeText(this, "tst 2", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, R.string.add_country_message, Toast.LENGTH_LONG).show()
 
             finish()
         }
-
     }
 }
