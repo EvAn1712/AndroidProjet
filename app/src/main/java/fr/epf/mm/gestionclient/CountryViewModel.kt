@@ -43,13 +43,33 @@ class CountryViewModel : ViewModel() {
         countryService = retrofit.create(CountryService::class.java)
     }
 
+    suspend fun tryToFetchCountry(searchName: String): List<Country> {
+        val maxRetries = 5
+        var currentRetry = 0
+        var success = false
+        var countriesList: List<Country> = emptyList()
+
+        while (currentRetry < maxRetries && !success) {
+            try {
+                val response = countryService.getCountries()
+                if (response.isNotEmpty()) {
+                    countriesList = response
+                    success = true
+                }
+            } catch (e: Exception) {
+                currentRetry++
+            }
+        }
+        return countriesList
+    }
+
     fun fetchCountries() {
         viewModelScope.launch {
             try {
-                val response = countryService.getCountries()
+                val response = tryToFetchCountry("all") // replace "all" with your search name
                 _countries.value = response
             } catch (e: Exception) {
-                // Gérer les erreurs ici
+                // Handle errors here
             }
         }
     }
