@@ -10,9 +10,13 @@
     <string name="synchronize">Synchroniser</string>
     <string name="country_flag">Drapeau du pays</string>
     <string name="advanced">Avancé</string>
+    <!-- Ajoutez la ressource search_hint -->
+    <string name="search_hint">Rechercher un pays</string>
+
     <string-array name="government_types">
         <item>Démocratie</item>
         <item>Monarchie</item>
         <item>Dictature</item>
     </string-array>
 </resources>
+

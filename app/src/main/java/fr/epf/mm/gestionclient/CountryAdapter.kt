@@ -1,4 +1,4 @@
-package fr.epf.mm.gestionclient
+package fr.epf.mm.gestionclientimport
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -6,12 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import fr.epf.mm.gestionclient.Country
 import fr.epf.mm.gestionclient.CountryDetailsActivity
 import fr.epf.mm.gestionclient.R
-class CountryAdapter(private val countries: List<Country>) : RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() {
+import java.util.*
+
+class CountryAdapter(private val context: Context, private var countries: List<Country>) :
+    RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() {
+
+    private var filteredCountries: List<Country> = countries
+
+    inner class CountryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val nameTextView: TextView = view.findViewById(R.id.country_name_textview)
+        val flagImageView: ImageView = view.findViewById(R.id.country_flag_imageview)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -19,25 +29,28 @@ class CountryAdapter(private val countries: List<Country>) : RecyclerView.Adapte
         return CountryViewHolder(view)
     }
 
-    override fun getItemCount() = countries.size
+    override fun getItemCount() = filteredCountries.size
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
-        val country = countries[position]
-        val view = holder.itemView
-        val nameTextView = view.findViewById<TextView>(R.id.country_name_textview)
-        val flagImageView = view.findViewById<ImageView>(R.id.country_flag_imageview)
-
-        nameTextView.text = country.name.common
-        Picasso.get().load(country.flags.png).into(flagImageView)
+        val country = filteredCountries[position]
+        holder.nameTextView.text = country.name.common
+        Picasso.get().load(country.flags.png).into(holder.flagImageView)
 
         holder.itemView.setOnClickListener {
-            with(it.context) {
-                val intent = Intent(this, CountryDetailsActivity::class.java)
-                intent.putExtra("country", country)
-                startActivity(intent)
-            }
+            val intent = Intent(context, CountryDetailsActivity::class.java)
+            intent.putExtra("country", country)
+            context.startActivity(intent)
         }
     }
 
-    class CountryViewHolder(view: View) : RecyclerView.ViewHolder(view)
+    fun filter(query: String) {
+        filteredCountries = if (query.isEmpty()) {
+            countries
+        } else {
+            countries.filter { country ->
+                country.name.common.toLowerCase(Locale.getDefault()).contains(query.toLowerCase(Locale.getDefault()))
+            }
+        }
+        notifyDataSetChanged()
+    }
 }
