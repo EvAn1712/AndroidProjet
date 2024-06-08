@@ -10,14 +10,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import java.util.Locale
-
 class CountryAdapter(
     private val context: Context,
     private var countries: List<Country>,
     private val onItemClick: (Country) -> Unit
 ) : RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() {
 
-    private var filteredCountries: List<Country> = countries
+    private var filteredCountries: List<Country> = countries.sortedBy { it.name.common }
 
     inner class CountryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameTextView: TextView = view.findViewById(R.id.country_name_textview)
@@ -38,18 +37,16 @@ class CountryAdapter(
         holder.nameTextView.text = country.name.common
         Picasso.get().load(country.flags.png).into(holder.flagImageView)
 
-        // Change la couleur de l'étoile en fonction de l'état du pays en tant que favori
         if (country.isFavorite) {
-            holder.favoriteButton.setImageResource(R.drawable.ic_star_yellow) // Icône d'étoile jaune
+            holder.favoriteButton.setImageResource(R.drawable.ic_star_yellow)
         } else {
-            holder.favoriteButton.setImageResource(R.drawable.ic_star_outline) // Icône d'étoile vide
+            holder.favoriteButton.setImageResource(R.drawable.ic_star_outline)
         }
 
         holder.itemView.setOnClickListener {
             onItemClick(country)
         }
 
-        // Gestion du clic sur le bouton de mise en favori
         holder.favoriteButton.setOnClickListener {
             toggleFavorite(holder.adapterPosition)
         }
@@ -73,6 +70,8 @@ class CountryAdapter(
                 filtered
             }
         }
+        // Trier la liste filtrée
+        filteredCountries = filteredCountries.sortedBy { it.name.common }
         notifyDataSetChanged()
     }
 
@@ -83,8 +82,9 @@ class CountryAdapter(
     }
 
     fun setCountries(countries: List<Country>) {
-        this.countries = countries
-        this.filteredCountries = countries
+        this.countries = countries.sortedBy { it.name.common }
+        this.filteredCountries = this.countries
         notifyDataSetChanged()
     }
 }
+

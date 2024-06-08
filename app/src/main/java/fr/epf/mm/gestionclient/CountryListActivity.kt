@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.epf.mm.gestionclient.databinding.ActivityCountryListBinding
-
 class CountryListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCountryListBinding
@@ -25,7 +24,6 @@ class CountryListActivity : AppCompatActivity() {
 
         viewModel.countries.observe(this, Observer { countries ->
             adapter = CountryAdapter(this, countries) { country ->
-                // Gestion du clic sur un pays
                 val intent = Intent(this, CountryDetailsActivity::class.java)
                 intent.putExtra("country", country)
                 startActivity(intent)
@@ -62,3 +60,4 @@ class CountryListActivity : AppCompatActivity() {
         }
     }
 }
+

@@ -1,20 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- res/layout/activity_home.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".HomeActivity">
 
     <Button
-        android:id="@+id/home_add_button"
-        android:layout_width="match_parent"
+        android:id="@+id/home_list_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_country" />
+        android:text="Liste des pays"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:layout_centerVertical="true" />
 
     <Button
-        android:id="@+id/home_list_button"
-        android:layout_width="match_parent"
+        android:id="@+id/home_play_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/list_countries" />
-</LinearLayout>
+        android:text="Jouer"
+        android:layout_below="@id/home_list_button"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

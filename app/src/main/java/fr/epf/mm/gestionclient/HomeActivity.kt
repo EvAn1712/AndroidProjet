@@ -1,8 +1,8 @@
 package fr.epf.mm.gestionclient
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 
 class HomeActivity : AppCompatActivity() {
@@ -10,16 +10,18 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        val addButton = findViewById<Button>(R.id.home_add_button)
         val listButton = findViewById<Button>(R.id.home_list_button)
-
-        addButton.setOnClickListener {
-            val intent = Intent(this, AddCountryActivity::class.java)
-            startActivity(intent)
-        }
+        val playButton = findViewById<Button>(R.id.home_play_button) // Nouveau bouton
 
         listButton.setOnClickListener {
             val intent = Intent(this, CountryListActivity::class.java)
+            startActivity(intent)
+        }
+
+        playButton.setOnClickListener {
+            val intent = Intent(this, GameActivity::class.java)
+            intent.putParcelableArrayListExtra("countries", ArrayList((application as MyApp).countries))
+            startActivity(intent)
             startActivity(intent)
         }
     }

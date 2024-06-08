@@ -12,6 +12,7 @@
     <string name="advanced">Avancé</string>
     <string name="search_hint">Rechercher un pays</string>
     <string name="add_to_favorites">Favori</string>
+    <string name="flag_image">Description de limage du drapeau</string>
 
     <string-array name="government_types">
         <item>Démocratie</item>

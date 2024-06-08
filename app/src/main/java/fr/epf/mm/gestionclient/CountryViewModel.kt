@@ -11,6 +11,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
+
 class CountryViewModel : ViewModel() {
     private val _countries = MutableLiveData<List<Country>>()
     val countries: LiveData<List<Country>> = _countries
@@ -66,9 +67,13 @@ class CountryViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = tryToFetchCountry()
-                _countries.value = response
+                // Trier les pays par nom commun avant de mettre à jour LiveData
+                val sortedCountries = response.sortedBy { it.name.common }
+                _countries.value = sortedCountries
             } catch (e: Exception) {
+                // Gérer les erreurs
             }
         }
     }
 }
+
