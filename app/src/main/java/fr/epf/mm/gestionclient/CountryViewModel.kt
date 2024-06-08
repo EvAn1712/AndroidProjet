@@ -68,7 +68,6 @@ class CountryViewModel : ViewModel() {
                 val response = tryToFetchCountry()
                 _countries.value = response
             } catch (e: Exception) {
-                // Gérer les erreurs ici
             }
         }
     }

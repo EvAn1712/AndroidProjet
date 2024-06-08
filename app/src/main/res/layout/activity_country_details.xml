@@ -11,25 +11,106 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp"
-        tools:context=".CountryDetailsActivity">
+        tools:context=".CountryDetailsActivity"
+        android:gravity="center_horizontal">
 
         <TextView
             android:id="@+id/country_name_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/country_capital_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"
+            android:gravity="center" />
 
         <ImageView
             android:id="@+id/country_flag_imageview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/country_flag" />
+            android:contentDescription="@string/country_flag"
+            android:layout_marginBottom="16dp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/country_capital_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Capital : "
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/country_capital_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/country_continent_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Continent : "
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/country_continent_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/country_language_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Langue : "
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/country_language_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/country_population_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Population : "
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/country_population_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp" />
+
+
+        <TextView
+            android:id="@+id/country_currency_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Currency : "
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/country_currency_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp" />
+
     </LinearLayout>
 </layout>

@@ -1,18 +1,19 @@
 package fr.epf.mm.gestionclient
+
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.epf.mm.gestionclient.databinding.ActivityCountryListBinding
-import fr.epf.mm.gestionclientimport.CountryAdapter
-
 
 class CountryListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCountryListBinding
     private val viewModel: CountryViewModel by viewModels()
     private lateinit var adapter: CountryAdapter
+    private var showFavoritesOnly: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,13 +24,17 @@ class CountryListActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         viewModel.countries.observe(this, Observer { countries ->
-            adapter = CountryAdapter(this, countries) // Passer le contexte en premier argument
+            adapter = CountryAdapter(this, countries) { country ->
+                // Gestion du clic sur un pays
+                val intent = Intent(this, CountryDetailsActivity::class.java)
+                intent.putExtra("country", country)
+                startActivity(intent)
+            }
             recyclerView.adapter = adapter
         })
 
         viewModel.fetchCountries()
 
-        // Configure le SearchView
         val searchView = binding.countrySearchView
         searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -37,10 +42,23 @@ class CountryListActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                adapter.filter(newText.orEmpty())
+                adapter.filter(newText.orEmpty(), showFavoritesOnly)
                 return true
             }
         })
+
+        binding.filterFavoritesButton.setOnClickListener {
+            showFavoritesOnly = !showFavoritesOnly
+            adapter.filter(binding.countrySearchView.query.toString(), showFavoritesOnly)
+            updateFilterButton()
+        }
+    }
+
+    private fun updateFilterButton() {
+        if (showFavoritesOnly) {
+            binding.filterFavoritesButton.text = "Retour"
+        } else {
+            binding.filterFavoritesButton.text = "Favorits"
+        }
     }
 }
-

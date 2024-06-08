@@ -11,7 +11,8 @@ data class Country(
     val currencies: HashMap<String, CurrencyDetail>,
     val population: Long,
     val flags: Flags,
-    val continents: ArrayList<String>
+    val continents: ArrayList<String>,
+    var isFavorite: Boolean = false
 ) : Parcelable
 
 @Parcelize

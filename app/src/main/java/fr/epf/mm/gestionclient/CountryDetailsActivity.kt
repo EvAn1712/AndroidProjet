@@ -18,6 +18,10 @@ class CountryDetailsActivity : AppCompatActivity() {
         country?.let {
             binding.countryNameTextview.text = it.name.common
             binding.countryCapitalTextview.text = it.capital.joinToString()
+            binding.countryLanguageTextview.text = it.languages.values.joinToString()
+            binding.countryPopulationTextview.text = it.population.toString()
+            binding.countryContinentTextview.text = it.continents.joinToString()
+            binding.countryCurrencyTextview.text = it.currencies.values.joinToString { currency -> currency.name.toString() }
             Picasso.get().load(it.flags.png).into(binding.countryFlagImageview)
         }
     }
