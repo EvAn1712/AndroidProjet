@@ -18,11 +18,6 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        playButton.setOnClickListener {
-            val intent = Intent(this, GameActivity::class.java)
-            intent.putParcelableArrayListExtra("countries", ArrayList((application as MyApp).countries))
-            startActivity(intent)
-            startActivity(intent)
+
         }
     }
-}
