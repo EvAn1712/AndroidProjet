@@ -16,12 +16,12 @@ class CountryDetailsActivity : AppCompatActivity() {
 
         val country = intent.getParcelableExtra<Country>("country")
         country?.let {
-            binding.countryNameTextview.text = it.name.common
-            binding.countryCapitalTextview.text = it.capital.joinToString()
-            binding.countryLanguageTextview.text = it.languages.values.joinToString()
+            binding.countryNameTextview.text = it.name
+            binding.countryCapitalTextview.text = it.capital ?: "N/A"
+            binding.countryLanguageTextview.text = it.languages.joinToString { language -> language.name }
             binding.countryPopulationTextview.text = it.population.toString()
-            binding.countryContinentTextview.text = it.continents.joinToString()
-            binding.countryCurrencyTextview.text = it.currencies.values.joinToString { currency -> currency.name.toString() }
+            binding.countryContinentTextview.text = it.region
+            binding.countryCurrencyTextview.text = it.currencies.joinToString { currency -> currency.name ?: "N/A" }
             Picasso.get().load(it.flags.png).into(binding.countryFlagImageview)
         }
     }

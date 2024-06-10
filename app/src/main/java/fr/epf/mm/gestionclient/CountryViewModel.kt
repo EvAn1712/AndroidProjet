@@ -28,14 +28,10 @@ class CountryViewModel : ViewModel() {
             .connectTimeout(30, TimeUnit.SECONDS)
             .build()
 
-        val moshi = Moshi.Builder()
-            .add(ArrayListAdapter())
-            .add(HashMapAdapter())
-            .add(CurrencyDetailAdapter())
-            .build()
+        val moshi = Moshi.Builder().build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://restcountries.com/v3.1/")
+            .baseUrl("https://www.apicountries.com/")
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(client)
             .build()
@@ -67,13 +63,11 @@ class CountryViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = tryToFetchCountry()
-                // Trier les pays par nom commun avant de mettre à jour LiveData
-                val sortedCountries = response.sortedBy { it.name.common }
+                val sortedCountries = response.sortedBy { it.name }
                 _countries.value = sortedCountries
             } catch (e: Exception) {
-                // Gérer les erreurs
+                _countries.value = emptyList()
             }
         }
     }
 }
-
