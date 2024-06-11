@@ -54,6 +54,8 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun startGame() {
+
+        mapView.overlays.clear()
         correctCountry = selectRandomCountry()
         correctLocation = GeoPoint(correctCountry.latlng[0], correctCountry.latlng[1])
 

@@ -8,6 +8,9 @@ plugins {
 android {
     namespace 'fr.epf.mm.gestionclient'
     compileSdk 33
+    viewBinding {
+        enabled = true
+    }
 
     defaultConfig {
         applicationId "fr.epf.mm.gestionclient"

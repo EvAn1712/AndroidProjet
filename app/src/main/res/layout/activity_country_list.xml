@@ -6,27 +6,81 @@
     android:orientation="vertical"
     tools:context=".CountryListActivity">
 
+    <TextView
+        android:id="@+id/app_name_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Liste des pays"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center_horizontal" />
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:gravity="center_vertical">
 
         <Button
             android:id="@+id/filterFavoritesButton"
             android:layout_width="72dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:padding="5dp"
-            android:text="Favorits"
-            android:textSize="10sp" />
+            android:layout_marginEnd="8dp"
+            android:padding="8dp"
+            android:background="@drawable/rounded_bouton"
+            android:text="Favoris"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/country_search_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:queryHint="@string/search_hint" />
+            android:queryHint="@string/search_hint"
+            android:iconifiedByDefault="false" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/sortByNameButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_bouton"
+            android:text="Trier par nom"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/sortByPopulationButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_bouton"
+            android:text="Trier par population"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:layout_marginEnd="8dp" />
+
+        <ImageButton
+            android:id="@+id/sortOrderButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_bouton"
+            android:src="@drawable/ic_arrow_down"  />
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

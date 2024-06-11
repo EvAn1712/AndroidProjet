@@ -14,10 +14,10 @@
     <string name="add_to_favorites">Favori</string>
     <string name="flag_image">Description de limage du drapeau</string>
 
-    <string-array name="government_types">
-        <item>Démocratie</item>
-        <item>Monarchie</item>
-        <item>Dictature</item>
+    <string-array name="sort_criteria_array">
+        <item>Nom</item>
+        <item>Population</item>
     </string-array>
+
 </resources>
 

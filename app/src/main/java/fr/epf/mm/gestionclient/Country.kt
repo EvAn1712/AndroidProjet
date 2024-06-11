@@ -33,13 +33,13 @@ data class Country(
 ) : Parcelable {
     fun getDetail(detailType: String): String {
         return when (detailType) {
-            "Monnaie" -> currencies.joinToString(separator = ", ") { it.name ?: "N/A" }
-            "Capitale" -> capital ?: "N/A"
+            "Monnaie" -> currencies.joinToString(separator = ", ") { it.name ?: "Pas de monnaie" }
+            "Capitale" -> capital ?: "Pas de Capitale"
             "Langue" -> languages.joinToString(separator = ", ") { it.name }
             "Nom du pays" -> name
             "Population" -> population.toString()
             "Continent" -> region
-            else -> "N/A"
+            else -> "Pas de reponse"
         }
     }
 }
