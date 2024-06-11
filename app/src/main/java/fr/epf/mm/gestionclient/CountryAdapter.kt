@@ -16,7 +16,6 @@ class CountryAdapter(
     private val onItemClick: (Country) -> Unit
 ) : RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() {
 
-    var currentSortCriterion: String = "name"
     private var filteredCountries: List<Country> = countries.sortedBy { it.name }
 
     inner class CountryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -71,7 +70,8 @@ class CountryAdapter(
                 filtered
             }
         }
-        sortCountriesBy(currentSortCriterion, true)
+        filteredCountries = filteredCountries.sortedBy { it.name }
+        notifyDataSetChanged()
     }
 
     fun toggleFavorite(position: Int) {
@@ -85,24 +85,4 @@ class CountryAdapter(
         this.filteredCountries = this.countries
         notifyDataSetChanged()
     }
-
-    fun sortCountriesBy(criterion: String, isAscending: Boolean) {
-        currentSortCriterion = criterion
-        filteredCountries = when (criterion) {
-            "name" -> if (isAscending) {
-                countries.sortedBy { it.name }
-            } else {
-                countries.sortedByDescending { it.name }
-            }
-            "population" -> if (isAscending) {
-                countries.sortedBy { it.population }
-            } else {
-                countries.sortedByDescending { it.population }
-            }
-            else -> filteredCountries
-        }
-        notifyDataSetChanged()
-    }
 }
-
-
