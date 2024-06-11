@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Gestion Country</string>
+    <string name="app_name">GeoQuiz</string>
     <string name="country_name">Nom du pays</string>
     <string name="asia">Asie</string>
     <string name="europe">Europe</string>
