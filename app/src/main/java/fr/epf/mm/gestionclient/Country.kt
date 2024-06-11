@@ -30,7 +30,19 @@ data class Country(
     val cioc: String? = null,
     val independent: Boolean = false,
     var isFavorite: Boolean = false
-) : Parcelable
+) : Parcelable {
+    fun getDetail(detailType: String): String {
+        return when (detailType) {
+            "Monnaie" -> currencies.joinToString(separator = ", ") { it.name ?: "N/A" }
+            "Capitale" -> capital ?: "N/A"
+            "Langue" -> languages.joinToString(separator = ", ") { it.name }
+            "Nom du pays" -> name
+            "Population" -> population.toString()
+            "Continent" -> region
+            else -> "N/A"
+        }
+    }
+}
 
 @Parcelize
 data class Flags(

@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.epf.mm.gestionclient.databinding.ActivityCountryListBinding
-
 class CountryListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCountryListBinding
@@ -31,10 +30,6 @@ class CountryListActivity : AppCompatActivity() {
             }
             recyclerView.adapter = adapter
         })
-
-        // Charger les favoris localement au démarrage de l'activité
-        val favorites = viewModel.loadFavoritesFromFile()
-        viewModel.saveFavoritesToFile(favorites)
 
         viewModel.fetchCountries()
 
@@ -65,3 +60,4 @@ class CountryListActivity : AppCompatActivity() {
         }
     }
 }
+
